@@ -75,6 +75,20 @@ void insertionSort(int arr[], int n)
     }
 }
 
+void bubbleSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
 void display(int arr[], int n)
 {
     for (int i = 0; i < n; i++)
@@ -94,6 +108,7 @@ int main()
     cin >> n;
 
     cout << "Enter elements: ";
+
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
@@ -103,6 +118,7 @@ int main()
     cout << "\n2. Binary Search";
     cout << "\n3. Selection Sort";
     cout << "\n4. Insertion Sort";
+    cout << "\n5. Bubble Sort";
     cout << "\nEnter choice: ";
     cin >> choice;
 
@@ -124,7 +140,7 @@ int main()
     }
     else if (choice == 2)
     {
-        selectionSort(arr, n);
+        bubbleSort(arr, n);
 
         cout << "Sorted array: ";
         display(arr, n);
@@ -153,6 +169,13 @@ int main()
     else if (choice == 4)
     {
         insertionSort(arr, n);
+
+        cout << "Sorted array: ";
+        display(arr, n);
+    }
+    else if (choice == 5)
+    {
+        bubbleSort(arr, n);
 
         cout << "Sorted array: ";
         display(arr, n);
