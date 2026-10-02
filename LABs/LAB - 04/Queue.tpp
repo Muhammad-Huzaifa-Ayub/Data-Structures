@@ -220,3 +220,4 @@ T Queue<T>::back() const
 
     return data[rear];
 }
+

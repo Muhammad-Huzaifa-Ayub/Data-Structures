@@ -2,7 +2,6 @@
 #define QUEUE_H
 
 #include <iostream>
-#include <cstdlib>
 
 using namespace std;
 
@@ -10,6 +9,7 @@ template <typename T>
 class Queue{
 
 private:
+
     T *data;
     int capacity;
     int NoOfElements;
