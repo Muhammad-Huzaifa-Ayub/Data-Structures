@@ -192,11 +192,11 @@ void LinkedList<T>::display()
 
     while (temp != nullptr)
     {
-        std::cout << temp->value << " ";
+        cout << temp->value << " ";
         temp = temp->next;
     }
 
-    std::cout << std::endl;
+    cout << endl;
 }
 
 template <typename T>

@@ -196,7 +196,7 @@ void LinkedList<T>::display()
         temp = temp->next;
     }
 
-    std::cout << std::endl;
+    cout << endl;
 }
 
 template <typename T>
