@@ -49,7 +49,7 @@ bool LinkedList<T>::search(T key)
 
     while (temp != nullptr)
     {
-        if (temp->info == key)
+        if (temp->value == key)
         {
             return true;
         }
@@ -67,7 +67,7 @@ void LinkedList<T>::insertAfter(T v, T key)
 
     while (temp != nullptr)
     {
-        if (temp->info == key)
+        if (temp->value == key)
         {
             Node<T> *temp2 = new Node<T>(v);
 
@@ -88,7 +88,7 @@ void LinkedList<T>::insertBefore(T v, T key)
         return;
     }
 
-    if (head->info == key)
+    if (head->value == key)
     {
         insertAtHead(v);
         return;
@@ -99,7 +99,7 @@ void LinkedList<T>::insertBefore(T v, T key)
 
     while (temp != nullptr)
     {
-        if (temp->info == key)
+        if (temp->value == key)
         {
             Node<T> *temp2 = new Node<T>(v);
 
@@ -162,7 +162,7 @@ void LinkedList<T>::remove(T v)
         return;
     }
 
-    if (head->info == v)
+    if (head->value == v)
     {
         removeAtHead();
         return;
@@ -173,7 +173,7 @@ void LinkedList<T>::remove(T v)
 
     while (temp != nullptr)
     {
-        if (temp->info == v)
+        if (temp->value == v)
         {
             previous->next = temp->next;
             delete temp;
@@ -192,7 +192,7 @@ void LinkedList<T>::display()
 
     while (temp != nullptr)
     {
-        std::cout << temp->info << " ";
+        std::cout << temp->value << " ";
         temp = temp->next;
     }
 
@@ -228,7 +228,7 @@ T LinkedList<T>::getHead()
         return T();
     }
 
-    return head->info;
+    return head->value;
 }
 
 template <typename T>
@@ -246,7 +246,7 @@ T LinkedList<T>::getTail()
         temp = temp->next;
     }
 
-    return temp->info;
+    return temp->value;
 }
 
 template <typename T>
@@ -268,7 +268,7 @@ int LinkedList<T>::count(T key)
 
     while (temp != nullptr)
     {
-        if (temp->info == key)
+        if (temp->value == key)
         {
             total++;
         }
@@ -288,7 +288,7 @@ LinkedList<T> LinkedList<T>::reversed()
 
     while (temp != nullptr)
     {
-        result.insertAtHead(temp->info);
+        result.insertAtHead(temp->value);
         temp = temp->next;
     }
 

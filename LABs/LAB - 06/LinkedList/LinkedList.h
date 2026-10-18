@@ -8,7 +8,7 @@ class Node{
 
     public:
 
-    T info;
+    T value;
     Node<T> *next;
 
     Node()
@@ -18,7 +18,7 @@ class Node{
 
     Node(T v)
     {
-        info = v;
+        value = v;
         next = nullptr;
     }
 };
