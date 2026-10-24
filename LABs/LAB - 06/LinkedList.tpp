@@ -295,5 +295,248 @@ LinkedList<T> LinkedList<T>::reversed()
     return result;
 }
 
+template <typename T>
+bool LinkedList<T>::moveKthNodeToFront(int k)
+{
+    if ( head == nullptr || k < 1 )
+    {
+        return false;
+    }
 
+    if ( k == 1 )
+    {
+        return true;
+    }
+
+    Node<T> *previous = head;
+    Node<T> *current = head->next;
+
+    int position = 2;
+
+    while ( current != nullptr && position < k )
+    {
+        previous = current;
+        current = current->next;
+        position++;
+    }
+
+    if ( current == nullptr )
+    {
+        return false;
+    }
+
+    previous->next = current->next;
+    current->next = head;
+    head = current;
+
+    return true;
+}
+
+template <typename T>
+void LinkedList<T>::split(LinkedList<T> &list1, LinkedList<T> &list2)
+{
+    Node<T> *current = head;
+
+    int position = 1;
+
+    while (current != nullptr)
+    {
+        Node<T> *nextNode = current->next;
+
+        if (position % 2 != 0)
+        {
+            if (list1.head == nullptr)
+            {
+                list1.head = current;
+            }
+            else
+            {
+                Node<T> *temp = list1.head;
+
+                while (temp->next != nullptr)
+                {
+                    temp = temp->next;
+                }
+
+                temp->next = current;
+            }
+        }
+        else
+        {
+            if (list2.head == nullptr)
+            {
+                list2.head = current;
+            }
+            else
+            {
+                Node<T> *temp = list2.head;
+
+                while (temp->next != nullptr)
+                {
+                    temp = temp->next;
+                }
+
+                temp->next = current;
+            }
+        }
+
+        current->next = nullptr;
+        current = nextNode;
+        position++;
+    }
+
+    head = nullptr;
+}
+
+template <typename T>
+void LinkedList<T>::alternateMerge(LinkedList<T> &list1,
+                                   LinkedList<T> &list2)
+{
+    Node<T> *first = list1.head;
+    Node<T> *second = list2.head;
+    Node<T> *tail = nullptr;
+
+    while (first != nullptr && second != nullptr)
+    {
+        Node<T> *nextFirst = first->next;
+        Node<T> *nextSecond = second->next;
+
+        if (tail == nullptr)
+        {
+            head = first;
+        }
+        else
+        {
+            tail->next = first;
+        }
+
+        tail = first;
+        tail->next = second;
+        tail = second;
+
+        first = nextFirst;
+        second = nextSecond;
+    }
+
+    if (tail != nullptr)
+    {
+        tail->next = nullptr;
+    }
+
+    list1.head = nullptr;
+    list2.head = nullptr;
+}
+
+template <typename T>
+void LinkedList<T>::reverseList()
+{
+    Node<T> *previous = nullptr;
+    Node<T> *current = head;
+
+    while (current != nullptr)
+    {
+        Node<T> *nextNode = current->next;
+
+        current->next = previous;
+
+        previous = current;
+        current = nextNode;
+    }
+
+    head = previous;
+}
+
+template <typename T>
+void LinkedList<T>::removeDuplicates()
+{
+    Node<T> *current = head;
+
+    while (current != nullptr)
+    {
+        Node<T> *previous = current;
+        Node<T> *temp = current->next;
+
+        while (temp != nullptr)
+        {
+            if (temp->value == current->value)
+            {
+                previous->next = temp->next;
+                delete temp;
+                temp = previous->next;
+            }
+            else
+            {
+                previous = temp;
+                temp = temp->next;
+            }
+        }
+
+        current = current->next;
+    }
+}
+
+template <typename T>
+bool LinkedList<T>::removeKthNode(int k, T &val)
+{
+    if (k < 1 || head == nullptr)
+    {
+        return false;
+    }
+
+    Node<T> *current = head;
+
+    if (k == 1)
+    {
+        val = current->value;
+        head = head->next;
+        delete current;
+        return true;
+    }
+
+    Node<T> *previous = nullptr;
+    int position = 1;
+
+    while (current != nullptr && position < k)
+    {
+        previous = current;
+        current = current->next;
+        position++;
+    }
+
+    if (current == nullptr)
+    {
+        return false;
+    }
+
+    val = current->value;
+    previous->next = current->next;
+    delete current;
+
+    return true;
+}
+
+template <typename T>
+void LinkedList<T>::combine(LinkedList<T> &list1,LinkedList<T> &list2)
+{
+    if (list1.head == nullptr)
+    {
+        head = list2.head;
+    }
+    else
+    {
+        head = list1.head;
+
+        Node<T> *current = list1.head;
+
+        while (current->next != nullptr)
+        {
+            current = current->next;
+        }
+
+        current->next = list2.head;
+    }
+
+    list1.head = nullptr;
+    list2.head = nullptr;
+}
 

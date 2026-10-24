@@ -3,6 +3,8 @@
 
 #include<iostream>
 
+using namespace std;
+
 template <typename T>
 class Node{
 
@@ -52,6 +54,14 @@ class LinkedList{
     void clear();
     int count(T key);
     LinkedList<T> reversed();
+    bool moveKthNodeToFront(int k);
+    void split(LinkedList<T> &list1, LinkedList<T> &list2) ;
+    void alternateMerge(LinkedList<T> &list1, LinkedList<T> &list2);
+    void reverseList();
+    void removeDuplicates();
+    bool removeKthNode(int k, T &val);
+    void combine(LinkedList<T> &list1, LinkedList<T> &list2);
+
 };
 
 #include "LinkedList.tpp"
