@@ -2,15 +2,15 @@
 #define BINARY_TREE_H
 
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 
-class BinaryTree{
-    
-    private:
-
-    int *data;
+template <typename T>
+class BinaryTree
+{
+private:
+    T *data;
     bool *status;
     int height;
     int capacity;
@@ -20,37 +20,52 @@ class BinaryTree{
     void InOrder(int i);
     int getActualheight(int i);
     void remove(int index);
-    void Ancestors(int node);
-    void Descendents(int node);
+    void Ancestors(int index);
+    void Descendents(int index);
     void displayLevel(int index, int currentLevel, int levelNo);
     void ParenthesizedView(int index);
+    int countOneChild(int i);
+    void showLeaves(int i);
 
 public:
-
     BinaryTree(int h);
-    BinaryTree(const BinaryTree &obj);
-    BinaryTree &operator = (const BinaryTree &obj);
+    BinaryTree(const BinaryTree<T> &obj);
+    BinaryTree<T> &operator = (const BinaryTree<T> &obj);
     ~BinaryTree();
-    void SetLeftChild(int p, int n);
-    void SetRightChild(int p, int n);
-    void SetRoot(int r);
-    int getParent(int n) const;
-    int getRoot() const;
+
+    void SetLeftChild(T p, T n);
+    void SetRightChild(T p, T n);
+    void SetRoot(T r);
+    T getParent(T n) const;
+    T getRoot() const;
     void LevelOrderPrint();
     void PreOrderPrint();
     void PostOrderPrint();
     void InOrderPrint();
     int getActualheight();
-    int getLeftChild(int p);
-    int getRightChild(int p);
-    int getIndex(int node);
-    void removeNode(int node);
-    void displayAncestors(int node);
-    void displayDescendents(int node);
-    int findLevelOfNode(int node);
+    T getLeftChild(T p);
+    T getRightChild(T p);
+    int getIndex(T node);
+    void removeNode(T node);
+    void displayAncestors(T node);
+    void displayDescendents(T node);
+    int findLevelOfNode(T node);
     void displayLevel(int levelNo);
     void displayParenthesizedView();
+    bool isEmpty();
+    bool isLeaf(T node);
+    T getSibling(T node);
+    void updateNode(T oldVal, T newVal);
+    int countNodes() const;
+    int countLeaves();
+    int countInternalNodes();
+    int countNodesWithOneChild();
+    void displayLeaves();
+    void reverseLevelOrder();
+    void spiralOrder();
+    void displayPath(T node);
+    
 };
 
-#include "BinaryTree.cpp"
+#include "BinaryTree.tpp"
 #endif
