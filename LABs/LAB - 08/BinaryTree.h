@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include <cmath>
+#include<stack>
 
 using namespace std;
 
 template <typename T>
-class BinaryTree
-{
+class BinaryTree{
+
 private:
+
     T *data;
     bool *status;
     int height;
@@ -26,8 +28,11 @@ private:
     void ParenthesizedView(int index);
     int countOneChild(int i);
     void showLeaves(int i);
+    void spiralLevel(int index, int currentLevel, int levelNo);
 
-public:
+
+    public :
+
     BinaryTree(int h);
     BinaryTree(const BinaryTree<T> &obj);
     BinaryTree<T> &operator = (const BinaryTree<T> &obj);

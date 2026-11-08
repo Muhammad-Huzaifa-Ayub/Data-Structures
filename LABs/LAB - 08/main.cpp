@@ -24,7 +24,7 @@ int main()
     t.displayDescendents(90);
     cout << "\n\n";
     cout << "isLeaf : " << t.isLeaf(3) << endl;
-    cout << "getSibling : " << t.getSibling(50);
+    cout << "getSibling : " << t.getSibling(70);
     cout << "\ncountNodes : " << t.countNodes() << endl;
     t.LevelOrderPrint();
     cout << "\ncountLeaves : " << t.countLeaves();
@@ -33,6 +33,7 @@ int main()
     cout << "\ndisplayLeaves : "; t.displayLeaves();
     cout << "\nreverseLevelOrder : "; t.reverseLevelOrder();
     cout << "\ndisplayPath : "; t.displayPath(3);
+    cout << "\nSpiralOrder : "; t.spiralOrder();
 
 
     return 0;

@@ -547,7 +547,11 @@ template <typename T>
 T BinaryTree<T>::getSibling(T node)
 {
     int ParentIndex = getIndex(getParent(node));
-    return data[((2 * ParentIndex) + 2)];
+    if ( data[((2 * ParentIndex) + 1)] == node) 
+    {
+        return getRightChild(data[ParentIndex]);
+    }
+    return getLeftChild(data[ParentIndex]);
 }
 
 template <typename T>
@@ -656,7 +660,76 @@ void BinaryTree<T>::reverseLevelOrder()
 template <typename T>
 void BinaryTree<T>::displayPath(T node)
 {
-    displayAncestors(node);
+    int index = getIndex(node);
+    T n = node;
+
+    if (index == -1)
+    {
+        return;
+    }
+
+    stack<T> values;
+    values.push(node);
+    T parent;
+    for ( int i = 0; i < height-1; i++ )
+    {
+        parent = getParent(node);
+        values.push(parent);
+        node = parent;
+    }
+
+    cout << " Path to [" << n << "]  is : ";
+    while ( !values.empty() )
+    {
+        parent = values.top();
+        values.pop();
+        cout << parent << " ";
+    }
+
+    cout << "\n";
+}
+
+template <typename T>
+void BinaryTree<T>::spiralLevel(int index, int currentLevel, int levelNo)
+{
+    if (index >= capacity || status[index] == false)
+    {
+        return;
+    }
+
+    if (currentLevel == levelNo)
+    {
+        cout << data[index] << " ";
+        return;
+    }
+
+    int left = (2 * index) + 1;
+    int right = (2 * index) + 2;
+
+    if (levelNo % 2 == 0)
+    {
+        spiralLevel(left, currentLevel + 1, levelNo);
+        spiralLevel(right, currentLevel + 1, levelNo);
+    }
+    else
+    {
+        spiralLevel(right, currentLevel + 1, levelNo);
+        spiralLevel(left, currentLevel + 1, levelNo);
+    }
+}
+
+template <typename T>
+void BinaryTree<T>::spiralOrder()
+{
+    if (capacity > 0 && status[0] == true)
+    {
+        for (int i = 0; i < height; i++ )
+        {
+            spiralLevel(0,0,i);
+        }
+    }
+
+    cout << "\n";
 }
 
 
